@@ -1,2 +1,7 @@
-# qc-frontend
-QueChimba frontend repo for globhack.
+## Run app
+
+`yarn start`
+
+## Build app
+
+`yarn build`

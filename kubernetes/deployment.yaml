@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: qc-frontend
+spec:
+  ports:
+  - port: 9000
+  type: LoadBalancer
+  selector:
+    app: qc-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qc-frontend
+spec:
+  selector:
+    matchLabels:
+      app: qc-frontend
+  template:
+    metadata:
+      labels:
+        app: qc-frontend
+    spec:
+      containers:
+      - name: qc-frontend
+        image: qc-frontend
+        ports:
+        - containerPort: 9000
