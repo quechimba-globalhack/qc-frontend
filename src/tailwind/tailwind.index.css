@@ -1,0 +1,11 @@
+/* style files */
+
+@import "./tailwind.base.css";
+
+@import "../components/shared/navbar/styles.css";
+@import "../components/shared/icon/styles.css";
+@import "../components/pages/login/styles.css";
+
+@import "tailwindcss/components";
+
+@import "./tailwind.utilities.css";
