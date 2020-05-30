@@ -1,5 +1,52 @@
 .login-container {
-  @apply h-screen w-full bg-cover bg-center bg-gray-100;
+  @apply h-screen w-full bg-cover bg-center;
+  background-image: url("../../../images/backgrounds/login.png");
+}
 
-  /* background-image: url("../../../images/backgrounds/login.png"); */
+.login-container__logo {
+  @apply flex justify-center py-16 w-full h-auto;
+}
+
+.login-container__logo img{
+  @apply w-48;
+}
+
+.login-container__title {
+  @apply w-full;
+}
+
+.login-container__title h1{
+  @apply pl-8 pr-16 leading-tight text-left text-white text-5xl;
+  font-family: "Monserrat";
+  font-weight: 600;
+}
+
+.login-container__description {
+  @apply w-full;
+}
+
+.login-container__description h3{
+  @apply pt-3 pl-8 pr-16 leading-tight text-left text-white text-2xl;
+  font-family: "Monserrat";
+  font-weight: 200;
+}
+
+.login-container__button {
+  @apply flex justify-center w-full;
+}
+
+.login-container__button a{
+  @apply pt-16 pb-8;
+  font-family: "Monserrat";
+  font-weight: 200;
+}
+
+.login-container__login-link {
+  @apply flex justify-center w-full;
+}
+
+.login-container__login-link a{
+  @apply py-2 text-white text-xl underline;
+  font-family: "Monserrat";
+  font-weight: 200;
 }
