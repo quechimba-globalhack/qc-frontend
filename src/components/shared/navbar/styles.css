@@ -1,8 +1,8 @@
-@tailwind base;
+@import "tailwindcss/base";
 
-@tailwind components;
+@import "tailwindcss/components";
 
-@tailwind utilities;
+@import "tailwindcss/utilities";
 
 .header-navbar {
   @apply w-full;
@@ -11,12 +11,6 @@
 .navbar {
   @apply flex justify-around bg-gray-600 pt-10 pb-16 px-3;
 }
-
-/* .navbar__left-section,
-.navbar__middle-section,
-.navbar__right-section {
-  @apply flex-1;
-} */
 
 .navbar__item-container {
   @apply flex-1;

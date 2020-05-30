@@ -1,0 +1,9 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+/* Using postcss-import */
+
+@import "components/pages/login/styles.css";
+@import "components/shared/navbar/styles.css";
+@import "components/shared/icon/styles.css";
+

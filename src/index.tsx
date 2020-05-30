@@ -1,31 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// import "./index.css";
+import "./styles.css"
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-// Apollo tools
-import { ApolloProvider } from "react-apollo";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+// // Apollo tools
+// import { ApolloProvider } from "react-apollo";
+// import { ApolloClient } from "apollo-client";
+// import { createHttpLink } from "apollo-link-http";
+// import { InMemoryCache } from "apollo-cache-inmemory";
 
-// GraphQL Server
-const httpLink = createHttpLink({
-  uri: "http://localhost:4000",
-});
+// // GraphQL Server
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:4000",
+// });
 
-// Instance Apollo Client
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});
+// // Instance Apollo Client
+// const client = new ApolloClient({
+//   link: httpLink,
+//   cache: new InMemoryCache(),
+// });
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    {/* <ApolloProvider client={client}> */}
+    <App />
+    {/* </ApolloProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
