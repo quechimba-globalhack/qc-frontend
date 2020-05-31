@@ -1,7 +1,16 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import webpack = require("webpack");
 import HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 import path = require("path");
+import dotenv = require("dotenv");
+
+const env = dotenv.config().parsed;
+// reduce it to a nice object, the same as before
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 const babelOptions = {
   presets: [
@@ -48,7 +57,7 @@ export default {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
             loader: "css-loader",
             options: {
@@ -70,13 +79,12 @@ export default {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ],
+        use: ["file-loader"],
       },
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({...envKeys, 'process.env.HELLO': '1+1'}),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
       filename: "./index.html",

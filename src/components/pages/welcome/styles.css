@@ -37,7 +37,7 @@
   @apply flex justify-center w-full my-2;
 }
 
-.welcome-container__login-link a{
+.welcome-container__login-link p{
   @apply text-white text-base underline;
   font-weight: 200;
 }

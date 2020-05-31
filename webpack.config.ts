@@ -7,8 +7,6 @@ import webpack = require("webpack");
 const isProduction = (env): boolean => !!env.production;
 
 module.exports = (env = {}): webpack.Configuration => {
-  console.log("env", env);
-
   if (isProduction(env)) {
     return merge(baseConfig, prodConfig);
   } else {

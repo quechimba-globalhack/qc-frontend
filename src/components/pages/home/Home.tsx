@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Filters from "./Filters";
+import { useQuery, useMutation } from "react-apollo";
+import {
+  QueChimbaData,
+  GetQueChimbaVariables,
+  QUE_CHIMBA_QUERY,
+} from "./api/queries/quechimba";
+import {
+  RpcProcessedResponse,
+  SendTransactionVariales,
+  SEND_TRANSACTION_MUTATION,
+} from "../../shared/resolvers/eosioTransaction";
 import Gallery from "../../shared/gallery/Gallery";
 
 import Background3 from "../../../images/backgrounds/background_3.png";
 import Background2 from "../../../images/backgrounds/background_2.png";
 import Background1 from "../../../images/backgrounds/background_2.png";
 
-const images = [
-  Background3,
-  Background2,
-  Background1,
-];
+const images = [Background3, Background2, Background1];
 
 // const images = [
 //   {
@@ -38,6 +45,15 @@ const images = [
 // ];
 
 const Home = () => {
+  const { loading, data } = useQuery<QueChimbaData, GetQueChimbaVariables>(
+    QUE_CHIMBA_QUERY,
+    {
+      variables: { count: 10 },
+    }
+  );
+  console.debug("loading?", loading);
+  console.debug("data?", data?.queChimba);
+
   return (
     <div className="home-container">
       <Filters />
@@ -64,6 +80,6 @@ const Home = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

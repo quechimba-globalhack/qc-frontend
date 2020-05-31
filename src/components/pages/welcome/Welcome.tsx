@@ -1,8 +1,10 @@
 import React from "react";
 
 import Icon from "../../shared/icon/Icon";
-
+import { NavLink } from "react-router-dom";
+import { toast } from 'react-toastify';
 const Welcome = () => {
+  const notify = () => toast("Que chimba rules !");
   return (
     <div className="welcome-container">
       <div className="welcome-container__logo">
@@ -15,10 +17,12 @@ const Welcome = () => {
         <h3>Ingresa a la mejor experiencia de viajes y subastas de latinoamérica</h3>
       </div>
       <div className="welcome-container__button">
-        <a className="btn-primary">Regístrate</a>
+        <button onClick={() => notify()} className="btn-primary">Regístrate</button>
       </div>
       <div className="welcome-container__login-link">
-        <a>Inicia sesión</a>
+        <NavLink to="/login">
+          <p>Inicia sesión</p>
+        </NavLink>
       </div>
     </div>
   );

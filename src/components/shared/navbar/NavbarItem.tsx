@@ -5,7 +5,7 @@ import Icon from "../icon/Icon";
 
 type NavItemProps = {
   itemName: string;
-  to: string;
+  to: any;
   icon: string;
 };
 

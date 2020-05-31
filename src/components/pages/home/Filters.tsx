@@ -1,6 +1,6 @@
 import React from "react";
 
-import Icon from "../../shared/icon/Icon.tsx";
+import Icon from "../../shared/icon/Icon";
 
 const Filters = () => {
   return (
