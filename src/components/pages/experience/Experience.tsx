@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useHistory } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
@@ -11,6 +11,7 @@ import Background3 from "../../../images/backgrounds/background_3.png";
 import Background2 from "../../../images/backgrounds/background_2.png";
 import { getImages } from "../../../utils/mockData";
 import { RouteComponentProps } from "react-router-dom";
+import { createAuctionStartTransaction } from "../../../application/transactions/auction";
 
 // const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
@@ -34,7 +35,8 @@ type OfferProps = {
 
 type TParams = { id: string };
 const Experience = () => {
-  const location = useLocation()
+  const history = useHistory();
+  const location = useLocation();
   const expId = (location.state as any).expid;
   // TODO: do a query to get the experience
   console.debug("expid ", expId);
@@ -44,6 +46,16 @@ const Experience = () => {
   const onSubmit = handleSubmit(({ tokens }) => {
     console.debug(tokens);
   });
+
+  const startAuction = async () => {
+    const data = await createAuctionStartTransaction("agency1", {
+      owner: 'agency1',
+      expid: expId,
+      start_date: new Date('2020-07-28T17:01:20')
+    });
+    console.debug("dataaaaaa 👮🏻‍♂️ ", data);
+    history.push('/bids');
+  }
 
   return (
     <Fragment>
@@ -157,11 +169,11 @@ const Experience = () => {
                 type="number"
                 ref={register}
               ></input> */}
-            <NavLink to="/bids">
-              <button className="btn-green" type="submit">
-                Ofertar
+            {/* <NavLink to="/bids"> */}
+            <button onClick={startAuction} className="btn-green" type="submit">
+              Iniciar subasta Demo ....
               </button>
-            </NavLink>
+            {/* </NavLink> */}
             {/* </form> */}
           </div>
         </div>
