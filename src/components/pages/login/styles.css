@@ -1,6 +1,6 @@
 .login-container {
   @apply h-screen w-full bg-cover bg-center;
-  background-image: url("../../../images/backgrounds/login.png");
+  background-image: url("../../../images/backgrounds/background_login.png");
 }
 
 .login-container__logo {
@@ -8,7 +8,7 @@
 }
 
 .login-container__logo img{
-  @apply w-48;
+  @apply w-40;
 }
 
 .login-container__title {
@@ -16,37 +16,60 @@
 }
 
 .login-container__title h1{
-  @apply pl-8 pr-16 leading-tight text-left text-white text-5xl;
-  font-family: "Monserrat";
+  @apply pl-8 pr-16 leading-tight text-left text-white text-3xl;
   font-weight: 600;
 }
 
-.login-container__description {
-  @apply w-full;
+.form-container {
+  @apply w-full py-5 px-8;
 }
 
-.login-container__description h3{
-  @apply pt-3 pl-8 pr-16 leading-tight text-left text-white text-2xl;
-  font-family: "Monserrat";
-  font-weight: 200;
+.form-container label{
+  @apply block text-left text-white text-base pt-3;
+  font-weight: 550;
 }
 
-.login-container__button {
-  @apply flex justify-center w-full;
+.form-container input{
+  @apply w-full rounded-lg h-10 bg-white bg-no-repeat pl-10;
+  font-weight: 550;
+  background-position: 5% 50%;
+  color: #057175;
 }
 
-.login-container__button a{
-  @apply pt-16 pb-8;
-  font-family: "Monserrat";
-  font-weight: 200;
+.user-input {
+  background: url(../../../images/icons/icono_user.svg) 7px 7px;
 }
 
-.login-container__login-link {
-  @apply flex justify-center w-full;
+.password-input {
+  background: url(../../../images/icons/icono_contrasena.svg) 7px 7px;
 }
 
-.login-container__login-link a{
-  @apply py-2 text-white text-xl underline;
-  font-family: "Monserrat";
-  font-weight: 200;
+.login-container__checkbox {
+  @apply w-full px-8;
+}
+
+.login-container__checkbox label {
+  @apply pl-3 text-left text-white text-lg underline;
+  font-weight: 250;
+}
+
+.login-container__submit {
+  @apply flex justify-center w-full mt-10 mb-8;
+}
+
+.login-controls-container {
+  @apply flex justify-around;
+}
+
+.login-controls-container a{
+  @apply flex-initial text-white underline text-base;
+  font-weight: 250;
+}
+
+.login-controls-container a:nth-child(1){
+  @apply text-left;
+}
+
+.login-controls-container a:nth-child(2){
+  @apply text-right;
 }
