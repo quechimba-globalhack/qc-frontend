@@ -12,6 +12,8 @@ import Background2 from "../../../images/backgrounds/background_2.png";
 import { getImages } from "../../../utils/mockData";
 import { RouteComponentProps } from "react-router-dom";
 import { createAuctionStartTransaction } from "../../../application/transactions/auction";
+import { useMutation } from "react-apollo";
+import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
 
 // const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
@@ -47,6 +49,20 @@ const Experience = () => {
     console.debug(tokens);
   });
 
+  const [sendTransaction, { error, data: mdata }] = useMutation<
+    RpcProcessedResponse,
+    SendTransactionVariales
+  >(SEND_TRANSACTION_MUTATION, {
+    variables: {
+      user: "expublish",
+      data: {
+        name: "expublish",
+        signatures: ["234567890"],
+        hexData: "4567890",
+      },
+    },
+  });
+
   const startAuction = async () => {
     const data = await createAuctionStartTransaction("agency1", {
       owner: 'agency1',
@@ -54,6 +70,13 @@ const Experience = () => {
       start_date: new Date('2020-07-28T17:01:20')
     });
     console.debug("dataaaaaa 👮🏻‍♂️ ", data);
+    const result = await sendTransaction({
+      variables: {
+        user: "agency1",
+        data,
+      }
+    });
+    console.debug("result ", result);
     history.push('/bids');
   }
 
