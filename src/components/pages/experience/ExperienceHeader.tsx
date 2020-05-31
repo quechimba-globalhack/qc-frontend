@@ -32,7 +32,11 @@ const ExperienceHeader = (props: InfoExperienceHeader) => {
     let starsList: any[] = [];
     for (let i = 1; i <= 5; i++) {
       starsList.push(
-        i <= stars ? <Icon icon="starFilled" key={i} /> : <Icon icon="star" key={i} />
+        i <= stars ? (
+          <Icon icon="starFilled" key={i} />
+        ) : (
+          <Icon icon="star" key={i} />
+        )
       );
     }
     return starsList;
@@ -56,7 +60,9 @@ const ExperienceHeader = (props: InfoExperienceHeader) => {
             </div>
           </div>
           <div className="image-container__terms">
-            <p>ks {props.price}</p>
+            <p className="title-lukas">
+              <span className="lks-icon-white"></span> {props.price}
+            </p>
             <p>{props.offers + " ofertas"}</p>
           </div>
         </div>

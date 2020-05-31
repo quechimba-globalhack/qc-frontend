@@ -58,8 +58,8 @@
 }
 
 .image-container__terms p:nth-child(1) {
-  @apply text-left text-2xl;
-  font-weight: 600;
+  @apply flex justify-start text-2xl text-white;
+  font-weight: 500;
 }
 
 .image-container__terms p:nth-child(2) {
@@ -243,4 +243,16 @@
 
 .bidded-container.hidden {
   @apply hidden;
+}
+
+.title-lukas {
+  @apply flex justify-start text-2xl text-white;
+  font-weight: 500;
+}
+
+.lks-icon-white {
+  background-image: url(../../../images/icons/icono_lukas.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  margin-top: 4px;
 }
