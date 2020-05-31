@@ -12,23 +12,50 @@
 
 .navbar {
   @apply flex justify-between p-8;
-  background-color: #149DA2;
+  background-color: #149da2;
 }
 
 .navbar--white {
   @apply flex justify-between p-8;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .navbar--white {
   @apply flex justify-between p-8;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .navbar__item-container {
   @apply flex-initial w-auto;
+  margin-top: 4px;
 }
 
 .navbar__item-icon {
   @apply text-center block justify-center;
+}
+
+.crypto-white {
+  @apply flex justify-center text-xl bg-white px-4 py-1 rounded;
+  color: #149da2;
+  font-weight: 500;
+}
+
+.lks-icon-green {
+  background-image: url(../../../images/icons/icono_lukas_green.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  margin-top: 4px;
+}
+
+.crypto-green {
+  @apply flex justify-center text-xl text-white px-4 py-1 rounded;
+  background-color: #149da2;
+  font-weight: 500;
+}
+
+.lks-icon-white {
+  background-image: url(../../../images/icons/icono_lukas.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  margin-top: 4px;
 }
