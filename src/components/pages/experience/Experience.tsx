@@ -70,6 +70,7 @@ const Experience = () => {
   );
   useEffect(() => {
     const idExp = (location?.state as any)?.expid ?? "";
+    console.debug("mounting ecxpdid", idExp);
     setExpId(idExp);
     if (idExp === "") {
       history.push("/home");
@@ -106,7 +107,8 @@ const Experience = () => {
 
   const startAuction = async () => {
     try {
-      if (!expId) return;
+      if (expId === "") return;
+      console.debug("Start auction");
       const data = await createAuctionStartTransaction("agency1", {
         owner: "agency1",
         expid: Number(expId),
@@ -242,7 +244,7 @@ const Experience = () => {
           </div>
           <div className="offer-container">
             {expData.bknBid && <p className="offer-container__user-offer">Tu oferta {expData.bknBid}</p>}
-            {!expData.bknBid && expData.actnId &&
+            {!expData.bknBid && expData.actnId !== null &&
               <NavLink to={{ ...stateRouter, pathname: '/bids' }}>
                 <button className="btn-green">
                   Ofertar

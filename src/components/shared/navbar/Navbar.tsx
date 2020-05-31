@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <header
       className={`"header-navbar ${
-        location.pathname === "/home" || location.pathname === "/login"
+        location.pathname === "/" || location.pathname === "/login"
           ? "hidden"
           : "active"
         }`}
@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="navbar__left-section">
           <NavbarItem
             itemName="menu"
-            to={{ ...routeOptionsGreen, pathname: "/" }}
+            to={{ ...routeOptionsGreen, pathname: "/home" }}
             icon={`${!navBar ? "menu" : "menuGreen"}`}
           />
         </div>
