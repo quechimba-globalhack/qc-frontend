@@ -17,6 +17,7 @@ const Navbar = () => {
   const location = useLocation();
   const history = useHistory();
   const [balance, setBalance] = useState<number>(0);
+  const [keyRandom, setKeyRandom] = useState<number>(Math.random());
   const { value } = useStateWithLocalStorage("username");
   const [navBar, setNavBar] = useState<boolean>(
     !!(location.state as any)?.mainNavBar
@@ -29,6 +30,8 @@ const Navbar = () => {
   });
 
   useEffect(() => {
+    setKeyRandom(Math.random())
+    console.debug("Query balance again");
     query();
   }, [location]);
 
@@ -51,11 +54,12 @@ const Navbar = () => {
 
   return (
     <header
+      key={keyRandom}
       className={`"header-navbar ${
         location.pathname === "/" || location.pathname === "/login"
           ? "hidden"
           : "active"
-      }`}
+        }`}
     >
       <nav className={`${!navBar ? "navbar" : "navbar--white"}`}>
         <div className="navbar__left-section">
@@ -73,11 +77,11 @@ const Navbar = () => {
               {balance}
             </p>
           ) : (
-            <p className="crypto-green">
-              <span className="lks-icon-white"></span>
-              {balance}
-            </p>
-          )}
+              <p className="crypto-green">
+                <span className="lks-icon-white"></span>
+                {balance}
+              </p>
+            )}
         </div>
         <div className="navbar__right-section">
           <NavbarItem

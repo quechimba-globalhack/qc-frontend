@@ -44,7 +44,7 @@ const infoExperience: ExperienceDataView = {
   title: "Laguna de Tota",
   duration: "5 días 4 noches",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+    "Este plan a Playa Blanca en Tota Boyacá, podrá disfrutar de una espectacular playa que se encuentra rodeada de naturaleza, con una temperatura 0°C a 12°C, sus tonalidades que van de verde a azul combinan perfectamente con sus bellos paisajes; en medio éstas, sobresalen unas islas pequeñas llamadas Cerro Chiquito, Santa Helena y San Pedro. Este paquete es ideal para disfrutar en compañía de la familia, amigos, compañeros y la pareja.",
   price: "15",
   like: false,
   eco: 3,
