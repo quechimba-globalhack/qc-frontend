@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useHistory } from "react-router-dom";
 
@@ -36,7 +36,16 @@ type OfferProps = {
 const Experience = () => {
   const history = useHistory();
   const location = useLocation();
-  const expId = (location.state as any).expid;
+  const [expId, setExpId] = useState<string>("")
+
+  useEffect(() => {
+    const idExp = (location?.state as any)?.expid ?? "";
+    setExpId(idExp);
+    if (idExp === "") {
+      history.push('/home');
+    }
+  }, [location])
+
   // TODO: do a query to get the experience
   const [openTab, setOpenTab] = useState(1);
 
@@ -61,9 +70,10 @@ const Experience = () => {
 
   const startAuction = async () => {
     try {
+      if (!expId) return;
       const data = await createAuctionStartTransaction("agency1", {
         owner: 'agency1',
-        expid: expId,
+        expid: expId as unknown as number,
         start_date: new Date('2020-07-28T17:01:20')
       });
       await sendTransaction({
