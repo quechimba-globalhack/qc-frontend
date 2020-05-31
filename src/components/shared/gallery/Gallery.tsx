@@ -1,13 +1,22 @@
 import React from "react";
+import { History, Location } from "history"
+import { Link } from "react-router-dom";
 
-type ItemProps = {
-  items: string[];
+export type GaleryItem = {
+  src: string;
+  to: any; //string | ((location: Location<{}>) => History.LocationDescriptor<{}>);
+}
+
+export type ItemProps = {
+  items: GaleryItem[];
 }
 
 const createItems = (prop: ItemProps) => {
-  const images = prop.items.map((item, index) => {
-    return <div key={index} className="gallery-container__image"><img src={item} alt="product gallery" /></div>
-  })
+  const images = prop.items.map((item, index) => (
+    <Link key={index} className="gallery-container__image" to={item.to}>
+      <img src={item.src} alt="product gallery" />
+    </Link>
+  ));
   return images;
 };
 
@@ -47,12 +56,11 @@ const createItems = (prop: ItemProps) => {
 //   return images;
 // };
 
-const Gallery = (items: ItemProps) => {
-  return (
-    <div className="gallery-container">
-      {createItems(items)}
-    </div>
-  );
-}
+const Gallery = (items: ItemProps) => (
+  <div className="gallery-container">
+    {createItems(items)}
+  </div>
+);
+
 
 export default Gallery;

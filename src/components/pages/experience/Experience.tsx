@@ -1,15 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
-import Gallery from "../../shared/gallery/Gallery";
+import Gallery, { GaleryItem } from "../../shared/gallery/Gallery";
 
 import Background from "../../../images/backgrounds/background_1_filter.png";
 import Background3 from "../../../images/backgrounds/background_3.png";
 import Background2 from "../../../images/backgrounds/background_2.png";
+import { getImages } from "../../../utils/mockData";
+import { RouteComponentProps } from "react-router-dom";
 
-const images = [Background3, Background2];
+// const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
 const infoExperience = {
   src: Background,
@@ -29,7 +32,12 @@ type OfferProps = {
   tokens: number;
 };
 
+type TParams = { id: string };
 const Experience = () => {
+  const location = useLocation()
+  const expId = (location.state as any).expid;
+  // TODO: do a query to get the experience
+  console.debug("expid ", expId);
   const [openTab, setOpenTab] = useState(1);
 
   const { register, handleSubmit } = useForm<OfferProps>();
@@ -129,7 +137,7 @@ const Experience = () => {
             <div className="gallery-experience-container__title">
               <p>Recomendados</p>
             </div>
-            <Gallery items={images} />
+            <Gallery items={getImages(2)} />
           </div>
           <div className="offer-container">
             <p className="offer-container__title">Valor</p>

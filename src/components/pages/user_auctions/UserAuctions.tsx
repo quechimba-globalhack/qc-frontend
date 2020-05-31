@@ -7,6 +7,7 @@ import Background3 from "../../../images/backgrounds/background_3.png";
 import Background2 from "../../../images/backgrounds/background_2.png";
 import Background1 from "../../../images/backgrounds/background_2.png";
 import RoundedImage from "../../../images/backgrounds/circle_background.png";
+import { images, getImages } from "../../../utils/mockData";
 
 const cardInfoWin = {
   image: RoundedImage,
@@ -47,12 +48,6 @@ const cardInfoLoseClosed = {
   state: "lose",
   active: false,
 }
-
-const images = [
-  Background3,
-  Background2,
-  Background1,
-];
 
 const UserAuctions = () => {
 
@@ -133,7 +128,7 @@ const UserAuctions = () => {
           <p>Recomendados</p>
           <a href="/">Ver todo</a>
         </div>
-        <Gallery items={images} />
+        <Gallery items={getImages(3)} />
       </div>
     </div>
   );

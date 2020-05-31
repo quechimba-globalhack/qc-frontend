@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Router, Route, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // components
 import NavbarItem from "./NavbarItem";
@@ -10,8 +10,6 @@ const Navbar = () => {
   const location = useLocation()
   const [navBar, setNavBar] = useState<boolean>(!!(location.state as any)?.mainNavBar);
 
-  console.debug(location);
-  console.debug(navBar);
   console.debug(location.pathname === "/" || location.pathname === "/login" ? "hidden" : "active");
 
   const routeOptionsWhite = {
