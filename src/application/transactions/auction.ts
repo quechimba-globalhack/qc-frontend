@@ -43,7 +43,7 @@ export async function createAuctionStartTransaction(
               actnid: 0,
               bidprice: 51000000,
               bkn: "maluma",
-            });F
+            });
  */
 export async function createAuctionBid(actor: string, data: AtnBidTxData) {
   return await service.getEosioTransacData<AtnBidTxData>("atnbid", actor, data);

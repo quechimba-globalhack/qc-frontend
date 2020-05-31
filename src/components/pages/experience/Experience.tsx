@@ -73,7 +73,7 @@ const Experience = () => {
       if (!expId) return;
       const data = await createAuctionStartTransaction("agency1", {
         owner: 'agency1',
-        expid: expId as unknown as number,
+        expid: Number(expId),
         start_date: new Date('2020-07-28T17:01:20')
       });
       await sendTransaction({
