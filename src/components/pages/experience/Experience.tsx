@@ -29,6 +29,7 @@ type ExperienceDataView = {
   stars: number;
   offers: number;
   bknBid?: number
+  actnId?: number
 }
 
 const infoExperience: ExperienceDataView = {
@@ -80,6 +81,7 @@ const Experience = () => {
         price: base_val,
         dueDate: maxactntdate,
         bknBid: actn && actn.bkn === value ? actn.highest_bid : null,
+        actnId: actn ? actn.actn_id : null,
       })
     }
   }, [data])
@@ -116,6 +118,10 @@ const Experience = () => {
       toast(error.message.replace("GraphQL error: Error: assertion failure with message", ""))
     }
   }
+
+  const stateRouter = {
+    state: { actnId: expData.actnId }
+  };
 
   return (
     <Fragment>
@@ -213,8 +219,8 @@ const Experience = () => {
           </div>
           <div className="offer-container">
             {expData.bknBid && <p className="offer-container__user-offer">Tu oferta {expData.bknBid}</p>}
-            {!expData.bknBid &&
-              <NavLink to="/bids">
+            {!expData.bknBid && expData.actnId &&
+              <NavLink to={{ ...stateRouter, pathname: '/bids' }}>
                 <button className="btn-green">
                   Ofertar
               </button>
