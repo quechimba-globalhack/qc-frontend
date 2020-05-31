@@ -18,16 +18,16 @@ export interface Experience {
   content: string;
   start_date: string;
   places: number;
-  base_val: number;
+  base_val: string;
   maxactntdate: Date;
   engagement: number;
   pub_price: number;
   sealed: number;
-  auction: Auction;
+  actn: Auction;
 }
 
 export interface ExperienceData {
-  experiences: Array<Experience>;
+  getExperience: Experience;
 }
 
 export interface GetExperienceVariables {
@@ -36,7 +36,7 @@ export interface GetExperienceVariables {
 
 export const GET_EXPERIENCE_QUERY = gql`
   query getExperience($expid: Int!) {
-    expereiences(expid: $expid) {
+    getExperience(expid: $expid) {
       exp_id
       bkn_id
       content
@@ -47,7 +47,7 @@ export const GET_EXPERIENCE_QUERY = gql`
       engagement
       pub_price
       sealed
-      auction {
+      actn {
         actn_id
         exp_id
         start_date

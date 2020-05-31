@@ -14,6 +14,7 @@ import {
 } from "../../shared/resolvers/eosioTransaction";
 import Gallery, { GaleryItem } from "../../shared/gallery/Gallery";
 import { images, getImages } from "../../../utils/mockData";
+import { ExperienceData, GetExperienceVariables, GET_EXPERIENCE_QUERY } from "../experience/api/queries/experience";
 
 // const images = [
 //   {
@@ -40,14 +41,14 @@ import { images, getImages } from "../../../utils/mockData";
 // ];
 
 const Home = () => {
-  const { loading, data } = useQuery<QueChimbaData, GetQueChimbaVariables>(
-    QUE_CHIMBA_QUERY,
+  const { loading, data } = useQuery<ExperienceData, GetExperienceVariables>(
+    GET_EXPERIENCE_QUERY,
     {
-      variables: { count: 10 },
+      variables: { expid: 0 },
     }
   );
   console.debug("loading?", loading);
-  console.debug("data?", data?.queChimba);
+  console.debug("data?", data?.getExperience);
 
   return (
     <div className="home-container">

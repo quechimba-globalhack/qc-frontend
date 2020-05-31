@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 type DateProps = {
-  dueDate: string;
+  dueDate: Date;
 };
 
 const Timer = ({ dueDate }: DateProps) => {
@@ -51,11 +51,11 @@ const Timer = ({ dueDate }: DateProps) => {
             {timeLeft[interval]}
           </span>
         ) : (
-          <span>
-            {":"}
-            {timeLeft[interval]}
-          </span>
-        )
+            <span>
+              {":"}
+              {timeLeft[interval]}
+            </span>
+          )
       );
       days = true;
     }

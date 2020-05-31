@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { useForm } from "react-hook-form";
 import Lottie from "react-lottie";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "react-apollo";
 
@@ -15,16 +15,22 @@ type offerProps = {
 };
 const UserBids = () => {
   const history = useHistory();
+  const location = useLocation();
   const [tokens, setTokens] = useState<number>(0);
+  const [idActn, setIdActn] = useState<number | null>(null)
   const [sendTransaction, { error, data: mdata }] = useMutation<
     RpcProcessedResponse,
     SendTransactionVariales
   >(SEND_TRANSACTION_MUTATION, {});
   const { value: bakan } = useStateWithLocalStorage('username');
-  // const { register, handleSubmit } = useForm<offerProps>();
-  // const onSubmit = handleSubmit(({ tokens }) => {
-  //   console.debug(tokens);
-  // });
+  useEffect(() => {
+    const idAct = (location?.state as any)?.actnId ?? null;
+    setIdActn(idAct);
+    if (idAct === null) {
+      history.push('/home');
+    }
+
+  }, [])
   const sendBid = async () => {
     try {
       if (!tokens) {
@@ -35,8 +41,9 @@ const UserBids = () => {
         toast("Imposible realizar la oferta")
         return;
       };
-      const data = await createAuctionBid("maluma", {
-        actnid: 0, // TODO: get auction
+      console.debug("Voy a enciar ", idActn)
+      const data = await createAuctionBid(bakan, {
+        actnid: idActn,
         // LKS has a precision of 4
         bidprice: tokens * 10000,
         bkn: bakan,
@@ -66,7 +73,6 @@ const UserBids = () => {
   };
 
   return (
-    // <form onSubmit={onSubmit}>
     <>
       <div className="bid-container">
         <div className="bid-container__title">
@@ -105,7 +111,6 @@ const UserBids = () => {
       <div className="animation-container">
         <Lottie options={defaultOptions} height={150} width={150} />
       </div>
-      {/* </form> */}
     </>
   );
 };

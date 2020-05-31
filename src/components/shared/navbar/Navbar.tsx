@@ -21,7 +21,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setNavBar((location.state as any)?.mainNavBar)
-  }, [location])
+  }, [])
 
   return (
     <header className={`"header-navbar ${location.pathname === "/" || location.pathname === "/login" ? "hidden" : "active"}`}>
