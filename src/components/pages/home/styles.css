@@ -1,0 +1,95 @@
+.home-container {
+  @apply h-auto;
+}
+
+.home-container__auctions-to-end,  {
+  @apply flex flex-col w-full h-auto bg-cover bg-center;
+  background-image: url(../../../images/backgrounds/gallery_background2.png);
+}
+
+.home-container__auctions-to-end {
+  @apply bg-cover bg-center;
+  background-image: url(../../../images/backgrounds/gallery_background2.png);
+}
+
+.gallery-container {
+  @apply flex justify-between content-end px-8;
+}
+
+.auctions-to-end__title {
+  @apply text-white;
+}
+
+.auctions-to-end__title p {
+  @apply flex-1 text-left text-xl pr-8;
+  font-weight: 250;
+}
+
+.auctions-to-end__title a {
+  @apply text-right text-xs underline flex-1 self-end;
+  font-weight: 250;
+}
+
+.user-auctions__title, .recommended-auctions__title {
+  @apply flex justify-between content-end px-8;
+}
+
+.user-auctions__title p, .recommended-auctions__title p {
+  @apply flex-1 text-left text-xl pr-8;
+  font-weight: 250;
+  color: #707070;
+}
+
+.user-auctions__title a, .recommended-auctions__title a {
+  @apply text-right text-xs underline flex-1 self-end;
+  font-weight: 250;
+  color: #149DA2;
+}
+
+.filters-container {
+  @apply flex flex-col w-full h-auto py-2;
+  background-color: #149DA2;
+}
+
+.filters-container__search-bar, .filters-container__icons {
+  @apply w-full px-8 py-4;
+}
+
+.filters-container__search-bar {
+  @apply flex relative;
+}
+
+.filters-container__search-bar input{
+  @apply relative w-full rounded-full bg-white px-6;
+  height: 12vw;
+}
+
+.filters-container__search-bar a {
+  @apply absolute rounded-full top-0 right-0 mr-8 mt-4;
+  background-color: #057175;
+  width: 12vw;
+  height: 12vw;
+}
+
+.filters-container__search-bar a img{
+  @apply object-none object-center;
+  width: 12vw;
+  height: 12vw;
+}
+
+.filters-container__icons {
+  @apply flex justify-between;
+}
+
+.filters-container__icons a{
+  @apply block rounded-full;
+  background-color: #72C4C7;
+  width: 15vw;
+  height: 15vw;
+}
+
+.filters-container__icons a img{
+  @apply object-none object-center;
+  width: 15vw;
+  height: 15vw;
+}

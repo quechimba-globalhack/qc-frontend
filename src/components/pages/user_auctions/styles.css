@@ -1,0 +1,100 @@
+/* .tabs-container {
+  @apply flex w-full;
+} */
+
+.tabs-container > p {
+  @apply text-left text-xl p-8;
+  font-weight: 250;
+}
+
+.tabs-container__tabs {
+  @apply flex w-full;
+}
+
+.tabs-container__navbar {
+  @apply flex justify-around text-lg text-center;
+  font-weight: 500;
+  color: #149DA2;
+}
+a.active {
+  position: relative;
+}
+
+a.active:before {
+  @apply absolute bottom-0;
+  content: "";
+  width: 33%;
+  left: 33%;
+  border-bottom: 2px solid #149DA2;
+
+}
+
+.tabs-container__tabs {
+  @apply relative flex flex-col min-w-0 w-full;
+}
+
+.tabs-container__tabs > .active-tab {
+  @apply block;
+}
+
+.tabs-container__tabs > .hidden-tab {
+  @apply hidden;
+}
+
+.card-container {
+  @apply flex flex-col rounded shadow-lg m-8 p-5;
+}
+
+.card-container__top-section {
+  @apply flex w-full;
+}
+
+.top-section__left-column {
+  @apply flex-initial content-start;
+}
+
+.top-section__left-column img{
+  width: 10vw;
+}
+
+.top-section__right-column {
+  @apply flex flex-col flex-1 text-left text-xs pl-3;
+}
+
+.top-section__right-column p:nth-child(1){
+  font-weight: 500;  
+}
+
+.card-container__bottom-section {
+  @apply flex w-full mt-3;
+}
+
+.card-container__bottom-section p {
+  @apply w-full rounded text-center text-white text-xs;
+  background-color: #057175;
+}
+
+.message {
+  @apply text-center rounded-full text-xs mt-3 py-1;
+  font-weight: 300;
+  border-width: 1px;
+}
+
+.message.win{
+  color: #6ABE0A;
+  border-color: #6ABE0A;
+}
+
+.message.lose{
+  color: #E40000;
+  border-color: #E40000;
+}
+
+.card-container__bottom-auction {
+  @apply flex justify-end w-full mt-2;
+}
+
+.card-container__bottom-auction.closed-auction {
+  @apply hidden;
+}
+

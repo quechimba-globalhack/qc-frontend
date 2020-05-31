@@ -1,0 +1,34 @@
+.gallery-container {
+  @apply flex flex-no-wrap w-full overflow-x-auto py-4 px-8;
+}
+
+.gallery-container__image {
+  @apply w-64 h-auto mr-3 bg-cover bg-center;
+}
+
+.gallery-container__image img {
+  @apply max-w-none;
+}
+
+.description-container {
+  @apply flex flex-col w-full;
+}
+
+.description-container__top-section {
+  @apply flex-1 content-start text-left text-white text-sm;
+  font-weight: 300;
+}
+
+.description-container__bottom-section {
+  @apply flex-1 content-end text-left text-white;
+}
+
+.description-container__bottom-section:nth-child(odd) {
+  @apply text-sm;
+  font-weight: 300;
+}
+
+.description-container__bottom-section:nth-child(even) {
+  @apply text-xs;
+  font-weight: 200;
+}

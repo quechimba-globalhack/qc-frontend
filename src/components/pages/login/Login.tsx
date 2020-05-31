@@ -1,28 +1,46 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { useForm } from "react-hook-form";
 
-// import Icon from "../../shared/icon/Icon";
+import Icon from "../../shared/icon/Icon";
 
-import CircleLogo from "../../../images/icons/circle-logo.png";
+type UserProps = {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
+
+  const { register, handleSubmit } = useForm<UserProps>();
+  const onSubmit = handleSubmit(({ email, password }) => {
+    console.log(email, password);
+  });
+
   return (
-    <div className="login-container">
+    <form onSubmit={onSubmit} className="login-container">
       <div className="login-container__logo">
-        <img src={CircleLogo} alt="quechimba logo" />
+        <Icon icon={"chimba"} />
       </div>
       <div className="login-container__title">
-        <h1>Qué hubo bacan</h1>
+        <h1>Bienvenido!</h1>
       </div>
-      <div className="login-container__description">
-        <h3>Ingresa a la mejor experiencia de viajes y subastas de latinoamérica</h3>
+      <div className="form-container">
+        <label>Usuario</label>
+        <input className="user-input" type="email" name="email" ref={register} />
+        <label>Contraseña</label>
+        <input className="password-input" type="password" name="password" ref={register} />
       </div>
-      <div className="login-container__button">
-        <a className="btn-blue">Regístrate</a>
+      <div className="login-container__checkbox">
+        <input type="checkbox" id="remember-me" value="true" />
+        <label>Recordarme</label>
       </div>
-      <div className="login-container__login-link">
-        <a>Inicia sesión</a>
+      <div className="login-container__submit">
+        <button type="submit" className="btn-primary">Entrar</button>
       </div>
-    </div>
+      <div className="login-controls-container">
+        <a href="/">Atras</a>
+        <a href="/">Olvidé mi contraseña</a>
+      </div>
+    </form>
   );
 };
 

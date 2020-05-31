@@ -1,70 +1,18 @@
+/* Tailwind styles base */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-/* Using postcss-import */
 
+/* Custom general styles */
+@import "./tailwind/base.styles.css";
+
+/* Custom component styles */
+@import "components/pages/welcome/styles.css";
 @import "components/pages/login/styles.css";
+@import "components/pages/home/styles.css";
+@import "components/pages/user_auctions/styles.css";
 @import "components/shared/navbar/styles.css";
 @import "components/shared/icon/styles.css";
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Black.otf);
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-ExtraBold.otf);
-  font-weight: 650;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Bold.otf);
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-SemiBold.otf);
-  font-weight: 550;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Medium.otf);
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Regular.otf);
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Light.otf);
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-ExtraLight.otf);
-  font-weight: 250;
-}
-
-@font-face {
-  font-family: "Monserrat";
-  src: url(./fonts/Montserrat-Thin.otf);
-  font-weight: 200;
-}
-/* 
-.que-chimba__button {
-  @apply bg-white hover:bg-green-100 text-green-100 hover:text-white text-xl py-2 px-4 rounded-full ;
-  font-family: "Monserrat";
-  font-weight: 200;
-} */
+@import "./components/shared/gallery/styles.css";
 
 
