@@ -1,0 +1,227 @@
+.image-container {
+  /* background-color: #057175; */
+  @apply flex content-end w-full bg-center bg-cover bg-no-repeat text-white p-8;
+  height: 50vh;
+  /* border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem; */
+}
+
+.image-container__content {
+  @apply self-end w-full;
+}
+
+.image-container__content > p:nth-child(1) {
+  @apply text-3xl;
+  font-weight: 700;
+}
+
+.image-container__content > p:nth-child(2) {
+  @apply text-base;
+  font-weight: 250;
+}
+
+.image-container__icons {
+  @apply flex flex-row w-full;
+}
+
+.icons__ratings {
+  @apply flex-1 flex-col w-full;
+}
+
+.icons-container {
+  @apply flex flex-row w-full mt-2;
+}
+
+.icons-container img {
+  @apply block w-5;
+}
+
+.image-container__icons {
+  @apply flex flex-row w-full border-b-2 border-gray-400 py-3;
+}
+
+.icons__like-button {
+  @apply block content-center w-10 rounded-full;
+  background-color: #fff;
+  width: 15vw;
+  height: 15vw;
+}
+
+.icons__like-button img {
+  @apply object-none object-center;
+  width: 15vw;
+  height: 15vw;
+}
+
+.image-container__terms {
+  @apply flex justify-between py-4;
+}
+
+.image-container__terms p:nth-child(1) {
+  @apply text-left text-2xl;
+  font-weight: 600;
+}
+
+.image-container__terms p:nth-child(2) {
+  @apply text-right border-white border-2 text-xl px-2 rounded;
+}
+
+.discount-container {
+  @apply w-full text-center text-white text-xl p-3;
+  font-weight: 700;
+  background-color: #057175;
+}
+
+.due-time-container {
+  @apply w-full text-center text-white text-xl p-3;
+  font-weight: 700;
+  background-color: #cbdadb;
+  color: #057175;
+}
+
+.tabs-container__tabs {
+  @apply flex w-full;
+}
+
+.tab-item {
+  @apply flex p-4 pt-8;
+}
+
+.tab-item.tab-overview > p:nth-child(1) {
+  @apply text-3xl;
+  color: #4e4e4e;
+  font-weight: 700;
+}
+
+.tab-item.tab-overview > p:nth-child(2) {
+  @apply text-xl;
+  color: #4e4e4e;
+  font-weight: 400;
+}
+
+.tab-item.tab-overview > p:nth-child(3) {
+  @apply text-lg mt-2;
+  color: #444444;
+  font-weight: 250;
+}
+
+.tabs-container__navbar {
+  @apply flex justify-around text-lg text-center mt-10;
+  font-weight: 600;
+  color: #149da2;
+}
+.tabs-container__navbar a.active {
+  position: relative;
+}
+
+.tabs-container__navbar a.active:before {
+  @apply absolute bottom-0;
+  content: "";
+  width: 33%;
+  left: 33%;
+  border-bottom: 2px solid #149da2;
+}
+
+/* .tabs-container__tabs {
+  @apply relative flex flex-col min-w-0 w-full;
+} */
+
+.tabs-container__tabs > .active-tab {
+  @apply block;
+}
+
+.tabs-container__tabs > .hidden-tab {
+  @apply hidden;
+}
+
+.activities-container__icons {
+  @apply flex justify-between mt-8 mb-5;
+}
+
+.activities-container__icons a {
+  @apply block rounded-full text-sm;
+  background-color: #72c4c7;
+  width: 15vw;
+  height: 15vw;
+}
+
+.activities-container__icons a img {
+  @apply object-none object-center;
+  width: 15vw;
+  height: 15vw;
+}
+
+.tags-container {
+  @apply flex flex-wrap mt-16;
+}
+
+.tags-container > p:nth-child(n + 2) {
+  @apply rounded-full text-white text-base px-3 mt-2 mr-2;
+  background-color: #149da2;
+}
+
+.tags-container > p:nth-child(1) {
+  @apply w-full text-2xl py-3;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.gallery-experience-container {
+  @apply flex flex-col w-full mt-5;
+}
+
+.gallery-experience-container__title {
+  @apply text-2xl py-3;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.gallery-experience-container > .gallery-container {
+  @apply flex justify-between content-end px-0;
+}
+
+.offer-container {
+  @apply flex flex-col w-full;
+}
+
+.offer-container__title {
+  @apply text-2xl py-3;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.offer-container__title {
+  @apply text-xl py-3;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.data-auction__titles {
+  @apply flex justify-between text-base;
+}
+
+.data-auction__quantity {
+  @apply flex justify-between text-xl;
+  font-weight: 600;
+  color: #149da2;
+}
+
+.offer-container__user-offer {
+  @apply text-xs my-4;
+}
+
+.offer-container > p:nth-child(1) {
+  @apply text-2xl py-3;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.data-auction__value {
+  @apply flex w-full shadow px-4 rounded-full h-10 text-right;
+  color: #149da2;
+  font-weight: 600;
+}
+
+.offer-container button {
+  @apply w-full text-center mt-3;
+}

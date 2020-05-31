@@ -1,18 +1,24 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import Icon from "../../shared/icon/Icon";
+import { useStateWithLocalStorage } from "../../../utils/useStateWithLocalStorage";
 
 type UserProps = {
-  email: string;
-  password: string;
+  username: string;
+  // TODO: After MVP password will be implemented
+  // password: string;
 }
 
 const Login = () => {
 
+  const history = useHistory();
+  const { setValue } = useStateWithLocalStorage('username');
   const { register, handleSubmit } = useForm<UserProps>();
-  const onSubmit = handleSubmit(({ email, password }) => {
-    console.log(email, password);
+  const onSubmit = handleSubmit(({ username }) => {
+    setValue(username.toLowerCase());
+    history.push("/home");
   });
 
   return (
@@ -25,16 +31,16 @@ const Login = () => {
       </div>
       <div className="form-container">
         <label>Usuario</label>
-        <input className="user-input" type="email" name="email" ref={register} />
+        <input className="user-input" type="text" name="username" ref={register} required />
         <label>Contraseña</label>
-        <input className="password-input" type="password" name="password" ref={register} />
+        <input className="password-input" type="password" name="password" />
       </div>
       <div className="login-container__checkbox">
         <input type="checkbox" id="remember-me" value="true" />
         <label>Recordarme</label>
       </div>
       <div className="login-container__submit">
-        <button type="submit" className="btn-primary">Entrar</button>
+        <button type="submit" className="btn-primary" ref={register}>Entrar</button>
       </div>
       <div className="login-controls-container">
         <a href="/">Atras</a>

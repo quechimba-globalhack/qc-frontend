@@ -2,6 +2,14 @@
   @apply w-full;
 }
 
+.header-navbar.hidden {
+  @apply hidden;
+}
+
+.header-navbar.active {
+  @apply flex;
+}
+
 .navbar {
   @apply flex justify-between p-8;
   background-color: #149DA2;

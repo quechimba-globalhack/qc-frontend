@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Router, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Switch, Router, Route, useLocation } from "react-router-dom";
 
 // components
 import NavbarItem from "./NavbarItem";
@@ -7,28 +7,36 @@ import NavbarItem from "./NavbarItem";
 // images
 
 const Navbar = () => {
+  const location = useLocation()
+  const [navBar, setNavBar] = useState<boolean>(!!(location.state as any)?.mainNavBar);
+
+  console.debug(location);
+  console.debug(navBar);
+  console.debug(location.pathname === "/" || location.pathname === "/login" ? "hidden" : "active");
+
+  const routeOptionsWhite = {
+    state: { mainNavBar: true }
+  };
+  const routeOptionsGreen = {
+    state: { mainNavBar: false }
+  };
+
+  useEffect(() => {
+    setNavBar((location.state as any)?.mainNavBar)
+  }, [location])
+
   return (
-    <header className="header-navbar">
-
-      <nav className="navbar">
+    <header className={`"header-navbar ${location.pathname === "/" || location.pathname === "/login" ? "hidden" : "active"}`}>
+      <nav className={`${!navBar ? "navbar" : "navbar--white"}`}>
         <div className="navbar__left-section">
-          <NavbarItem itemName="menu" to="/menu" icon="menu" />
+          <NavbarItem itemName="menu" to={{ ...routeOptionsGreen, pathname: '/' }} icon={`${!navBar ? "menu" : "menuGreen"}`} />
         </div>
         <div className="navbar__right-section">
-          <NavbarItem itemName="auction" to="/auctions" icon="auction" />
-        </div>
-      </nav>
-
-      <nav className="navbar--white">
-        <div className="navbar__left-section">
-          <NavbarItem itemName="menu" to="/menu" icon="menuGreen" />
-        </div>
-        <div className="navbar__right-section">
-          <NavbarItem itemName="auction" to="/auctions" icon="auctionGreen" />
+          <NavbarItem itemName="auction" to={{ ...routeOptionsWhite, pathname: '/user-auctions' }} icon={`${!navBar ? "auction" : "auctionGreen"}`} />
         </div>
       </nav>
     </header>
-  );
+  )
 };
 
 export default Navbar;

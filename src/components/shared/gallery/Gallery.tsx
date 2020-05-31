@@ -5,8 +5,8 @@ type ItemProps = {
 }
 
 const createItems = (prop: ItemProps) => {
-  const images = prop.items.map(item => {
-    return <div className="gallery-container__image"><img src={item} alt="product gallery" /></div>
+  const images = prop.items.map((item, index) => {
+    return <div key={index} className="gallery-container__image"><img src={item} alt="product gallery" /></div>
   })
   return images;
 };
