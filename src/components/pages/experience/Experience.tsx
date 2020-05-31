@@ -8,6 +8,7 @@ import Gallery from "../../shared/gallery/Gallery";
 import Background from "../../../images/backgrounds/background_1_filter.png";
 import Background3 from "../../../images/backgrounds/background_3.png";
 import Background2 from "../../../images/backgrounds/background_2.png";
+import { NavLink } from "react-router-dom";
 
 const images = [Background3, Background2];
 
@@ -93,7 +94,7 @@ const Experience = () => {
         <div
           className={`tab-item tab-overview ${
             openTab === 1 ? "active-tab" : "hidden-tab"
-            }`}
+          }`}
           id="active"
         >
           <p>{infoExperience.title}</p>
@@ -142,17 +143,19 @@ const Experience = () => {
               <p>{infoExperience.offers}</p>
             </div>
             <p className="offer-container__user-offer">Tu oferta</p>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
               <input
                 className="data-auction__value"
                 name="tokens"
                 type="number"
                 ref={register}
-              ></input>
+              ></input> */}
+            <NavLink to="/bids">
               <button className="btn-green" type="submit">
                 Ofertar
               </button>
-            </form>
+            </NavLink>
+            {/* </form> */}
           </div>
         </div>
         <div
