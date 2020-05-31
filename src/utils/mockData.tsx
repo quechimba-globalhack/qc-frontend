@@ -6,15 +6,15 @@ import Background3 from "../images/backgrounds/background_4.png";
 import Background4 from "../images/backgrounds/background_5.png";
 
 const routeOptionsExp = {
-  state: { expid: 1 }
+  state: { expid: 0 }
 };
 
 const routeOptionsExp2 = {
-  state: { expid: 2 }
+  state: { expid: 1 }
 };
 
-const to1 = { ...routeOptionsExp, pathname: '/experience' }
-const to2 = { ...routeOptionsExp2, pathname: '/experience' }
+export const to1 = { ...routeOptionsExp, pathname: '/experience' }
+export const to2 = { ...routeOptionsExp2, pathname: '/experience' }
 
 const item1 = {
   src: Background1,

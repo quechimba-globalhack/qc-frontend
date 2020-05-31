@@ -14,7 +14,7 @@ export type ItemProps = {
 const createItems = (prop: ItemProps) => {
   const images = prop.items.map((item, index) => (
     <Link key={index} className="gallery-container__image" to={item.to}>
-      <img src={item.src} alt="product gallery" />
+      <img src={item.src} alt="product gallery" data-attr={item?.to?.state?.expid} />
     </Link>
   ));
   return images;
