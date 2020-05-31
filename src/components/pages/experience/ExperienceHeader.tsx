@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 import Icon from "../../shared/icon/Icon";
+import Timer from "../../shared/timer/Timer";
 
 type InfoExperienceHeader = {
   src: string;
-  time: string;
+  dueDate: string;
   title: string;
   duration: string;
   description: string;
@@ -64,7 +65,7 @@ const ExperienceHeader = (props: InfoExperienceHeader) => {
         <p>Obtén un 50% de descuento</p>
       </div>
       <div className="due-time-container">
-        <p>{props.time}</p>
+        <Timer dueDate={props.dueDate} />
       </div>
     </Fragment>
   );
