@@ -12,13 +12,8 @@ import {
   SendTransactionVariales,
   SEND_TRANSACTION_MUTATION,
 } from "../../shared/resolvers/eosioTransaction";
-import Gallery from "../../shared/gallery/Gallery";
-
-import Background3 from "../../../images/backgrounds/background_3.png";
-import Background2 from "../../../images/backgrounds/background_2.png";
-import Background1 from "../../../images/backgrounds/background_2.png";
-
-const images = [Background3, Background2, Background1];
+import Gallery, { GaleryItem } from "../../shared/gallery/Gallery";
+import { images, getImages } from "../../../utils/mockData";
 
 // const images = [
 //   {
@@ -62,21 +57,21 @@ const Home = () => {
           <p>Subastas por finalizar</p>
           <a href="/">Ver todo</a>
         </div>
-        <Gallery items={images} />
+        <Gallery items={getImages(4)} />
       </div>
       <div className="home-container__user-auctions">
         <div className="gallery-container user-auctions__title">
           <p>Oferté</p>
           <a href="/">Ver todo</a>
         </div>
-        <Gallery items={images} />
+        <Gallery items={getImages(3)} />
       </div>
       <div className="home-container__recommended-auction">
         <div className="gallery-container recommended-auctions__title">
           <p>Recomendados</p>
           <a href="/">Ver todo</a>
         </div>
-        <Gallery items={images} />
+        <Gallery items={getImages(4)} />
       </div>
     </div>
   );

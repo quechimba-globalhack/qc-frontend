@@ -1,16 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useHistory } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
 import Gallery from "../../shared/gallery/Gallery";
 
 import Background from "../../../images/backgrounds/background_1_filter.png";
-import Background3 from "../../../images/backgrounds/background_3.png";
-import Background2 from "../../../images/backgrounds/background_2.png";
-import { NavLink } from "react-router-dom";
+import { getImages } from "../../../utils/mockData";
+import { createAuctionStartTransaction } from "../../../application/transactions/auction";
+import { useMutation } from "react-apollo";
+import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
+import { toast } from "react-toastify";
 
-const images = [Background3, Background2];
+// const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
 const infoExperience = {
   src: Background,
@@ -31,12 +34,61 @@ type OfferProps = {
 };
 
 const Experience = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const [expId, setExpId] = useState<string>("")
+
+  useEffect(() => {
+    const idExp = (location?.state as any)?.expid ?? "";
+    setExpId(idExp);
+    if (idExp === "") {
+      history.push('/home');
+    }
+  }, [location])
+
+  // TODO: do a query to get the experience
   const [openTab, setOpenTab] = useState(1);
 
-  const { register, handleSubmit } = useForm<OfferProps>();
-  const onSubmit = handleSubmit(({ tokens }) => {
-    console.debug(tokens);
+  // const { register, handleSubmit } = useForm<OfferProps>();
+  // const onSubmit = handleSubmit(({ tokens }) => {
+  //   console.debug(tokens);
+  // });
+
+  const [sendTransaction, { error, data: mdata }] = useMutation<
+    RpcProcessedResponse,
+    SendTransactionVariales
+  >(SEND_TRANSACTION_MUTATION, {
+    variables: {
+      user: "expublish",
+      data: {
+        name: "expublish",
+        signatures: ["234567890"],
+        hexData: "4567890",
+      },
+    },
   });
+
+  const startAuction = async () => {
+    try {
+      if (!expId) return;
+      const data = await createAuctionStartTransaction("agency1", {
+        owner: 'agency1',
+        expid: Number(expId),
+        start_date: new Date('2020-07-28T17:01:20')
+      });
+      await sendTransaction({
+        variables: {
+          user: "agency1",
+          data,
+        }
+      });
+      // Navigate to bids route
+      history.push('/bids');
+    } catch (err) {
+      const error = new Error(err);
+      toast(error.message.replace("GraphQL error: Error: assertion failure with message", ""))
+    }
+  }
 
   return (
     <Fragment>
@@ -94,7 +146,7 @@ const Experience = () => {
         <div
           className={`tab-item tab-overview ${
             openTab === 1 ? "active-tab" : "hidden-tab"
-          }`}
+            }`}
           id="active"
         >
           <p>{infoExperience.title}</p>
@@ -130,7 +182,7 @@ const Experience = () => {
             <div className="gallery-experience-container__title">
               <p>Recomendados</p>
             </div>
-            <Gallery items={images} />
+            <Gallery items={getImages(2)} />
           </div>
           <div className="offer-container">
             <p className="offer-container__title">Valor</p>
@@ -150,11 +202,11 @@ const Experience = () => {
                 type="number"
                 ref={register}
               ></input> */}
-            <NavLink to="/bids">
-              <button className="btn-green" type="submit">
-                Ofertar
+            {/* <NavLink to="/bids"> */}
+            <button onClick={startAuction} className="btn-green" type="submit">
+              Iniciar subasta Demo ....
               </button>
-            </NavLink>
+            {/* </NavLink> */}
             {/* </form> */}
           </div>
         </div>

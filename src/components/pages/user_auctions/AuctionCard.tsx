@@ -26,8 +26,8 @@ const Message = (props: CardProps) => {
       ? win
       : lose
     : props.state === "win"
-    ? won
-    : lose;
+      ? won
+      : lose;
 };
 
 const AuctionCard = (props: CardProps) => {
@@ -70,22 +70,11 @@ const AuctionCard = (props: CardProps) => {
               ? "closed-auction"
               : "active-auction"
             : "closed-auction"
-        }`}
+          }`}
       >
         <button
           className="btn-green"
-          onClick={async () => {
-            const data = await createAuctionCancel("agency1", {
-              actnid: 0,
-              owner: "agency1",
-            });
-            sendTransaction({
-              variables: {
-                user: "agency1",
-                data,
-              },
-            });
-          }}
+          onClick={() => console.debug("missing implementation")}
         >
           Ofertar
         </button>
