@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Lottie from "react-lottie";
+
+import AirplaneAnimation from "../../../images/animations/flight.json";
 
 const UserBids = () => {
   const [tokens, setTokens] = useState("");
@@ -12,6 +15,16 @@ const UserBids = () => {
   const onSubmit = handleSubmit(({ tokens }) => {
     console.debug(tokens);
   });
+
+  // Lottie animation config
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: AirplaneAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <form onSubmit={onSubmit}>
@@ -48,6 +61,9 @@ const UserBids = () => {
             Ofertar
           </button>
         </div>
+      </div>
+      <div className="animation-container">
+        <Lottie options={defaultOptions} height={150} width={150} />
       </div>
     </form>
   );
