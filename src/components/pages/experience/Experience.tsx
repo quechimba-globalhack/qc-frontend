@@ -17,7 +17,7 @@ import { toast } from "react-toastify";
 
 const infoExperience = {
   src: Background,
-  time: "96 : 23 : 50",
+  dueDate: "2020-06-27",
   title: "Laguna de Tota",
   duration: "5 días 4 noches",
   description:
@@ -94,7 +94,7 @@ const Experience = () => {
     <Fragment>
       <ExperienceHeader
         src={infoExperience.src}
-        time={infoExperience.time}
+        dueDate={infoExperience.dueDate}
         title={infoExperience.title}
         duration={infoExperience.duration}
         description={infoExperience.description}
