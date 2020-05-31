@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Lottie from "react-lottie";
 
 import AuctionCard from "./AuctionCard";
 import Gallery from "../../shared/gallery/Gallery";
@@ -9,6 +10,8 @@ import Background1 from "../../../images/backgrounds/background_2.png";
 import RoundedImage from "../../../images/backgrounds/circle_background.png";
 import { images, getImages } from "../../../utils/mockData";
 
+import Car from "../../../images/animations/car.json";
+
 const cardInfoWin = {
   image: RoundedImage,
   title: "Laguna de Tota",
@@ -17,7 +20,7 @@ const cardInfoWin = {
   dueDate: "00:23:50",
   state: "win",
   active: true,
-}
+};
 
 const cardInfoLose = {
   image: RoundedImage,
@@ -27,7 +30,7 @@ const cardInfoLose = {
   dueDate: "08:23:50",
   state: "lose",
   active: true,
-}
+};
 
 const cardInfoWinClosed = {
   image: RoundedImage,
@@ -37,7 +40,7 @@ const cardInfoWinClosed = {
   dueDate: "00:23:50",
   state: "win",
   active: false,
-}
+};
 
 const cardInfoLoseClosed = {
   image: RoundedImage,
@@ -47,44 +50,59 @@ const cardInfoLoseClosed = {
   dueDate: "08:23:50",
   state: "lose",
   active: false,
-}
+};
 
 const UserAuctions = () => {
-
   const [openTab, setOpenTab] = useState(1);
+
+  // Lottie animation config
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Car,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <div className="user_auctions-container">
       <div className="tabs-container">
         <p>Mis ofertas</p>
+        <div className="car-animation-container">
+          <Lottie options={defaultOptions} height={170} width={400} />
+        </div>
         <div className="tabs-container__navbar">
-          <a href="#active"
+          <a
+            href="#active"
             data-toggle="tab"
             role="tablist"
-            className={"" + ((openTab === 1) ? "active" : "closed")}
+            className={"" + (openTab === 1 ? "active" : "closed")}
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(1);
-            }
-            }
+            }}
           >
             Activas
           </a>
-          <a href="#closed"
+          <a
+            href="#closed"
             data-toggle="tab"
             role="tablist"
-            className={"" + ((openTab === 2) ? "active" : "closed")}
+            className={"" + (openTab === 2 ? "active" : "closed")}
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(2);
-            }
-            }
+            }}
           >
             Finalizadas
           </a>
         </div>
         <div className="tabs-container__tabs">
-          <div className={(openTab === 1) ? "active-tab" : "hidden-tab"} id="active">
+          <div
+            className={openTab === 1 ? "active-tab" : "hidden-tab"}
+            id="active"
+          >
             <AuctionCard
               image={cardInfoWin.image}
               title={cardInfoWin.title}
@@ -92,7 +110,8 @@ const UserAuctions = () => {
               userOffer={cardInfoWin.userOffer}
               dueDate={cardInfoWin.dueDate}
               state={cardInfoWin.state}
-              active={cardInfoWin.active} />
+              active={cardInfoWin.active}
+            />
             <AuctionCard
               image={cardInfoLose.image}
               title={cardInfoLose.title}
@@ -100,10 +119,13 @@ const UserAuctions = () => {
               userOffer={cardInfoLose.userOffer}
               dueDate={cardInfoLose.dueDate}
               state={cardInfoLose.state}
-              active={cardInfoLose.active} />
-
+              active={cardInfoLose.active}
+            />
           </div>
-          <div className={(openTab === 2) ? "active-tab" : "hidden-tab"} id="closed">
+          <div
+            className={openTab === 2 ? "active-tab" : "hidden-tab"}
+            id="closed"
+          >
             <AuctionCard
               image={cardInfoLoseClosed.image}
               title={cardInfoLoseClosed.title}
@@ -111,7 +133,8 @@ const UserAuctions = () => {
               userOffer={cardInfoLoseClosed.userOffer}
               dueDate={cardInfoLoseClosed.dueDate}
               state={cardInfoLoseClosed.state}
-              active={cardInfoLoseClosed.active} />
+              active={cardInfoLoseClosed.active}
+            />
             <AuctionCard
               image={cardInfoWinClosed.image}
               title={cardInfoWinClosed.title}
@@ -119,7 +142,8 @@ const UserAuctions = () => {
               userOffer={cardInfoWinClosed.userOffer}
               dueDate={cardInfoWinClosed.dueDate}
               state={cardInfoWinClosed.state}
-              active={cardInfoWinClosed.active} />
+              active={cardInfoWinClosed.active}
+            />
           </div>
         </div>
       </div>
@@ -132,6 +156,6 @@ const UserAuctions = () => {
       </div>
     </div>
   );
-}
+};
 
 export default UserAuctions;
