@@ -1,19 +1,24 @@
-@import "tailwindcss/base";
-
-@import "tailwindcss/components";
-
-@import "tailwindcss/utilities";
-
 .header-navbar {
   @apply w-full;
 }
 
 .navbar {
-  @apply flex justify-around bg-gray-600 pt-10 pb-16 px-3;
+  @apply flex justify-between p-8;
+  background-color: #149DA2;
+}
+
+.navbar--white {
+  @apply flex justify-between p-8;
+  background-color: #FFF;
+}
+
+.navbar--white {
+  @apply flex justify-between p-8;
+  background-color: #FFF;
 }
 
 .navbar__item-container {
-  @apply flex-1;
+  @apply flex-initial w-auto;
 }
 
 .navbar__item-icon {

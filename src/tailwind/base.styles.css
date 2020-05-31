@@ -67,3 +67,14 @@
   background-color: #057175;
   color: #FFF;
 }
+
+.btn-green {
+  @apply text-white py-2 px-12 rounded-full text-xl;
+  font-weight: 400;
+  background-color: #057175;
+}
+
+.btn-green:focus {
+  background-color: #FFF;
+  color: #057175;
+}

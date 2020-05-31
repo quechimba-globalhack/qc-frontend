@@ -9,7 +9,11 @@
 /* Custom component styles */
 @import "components/pages/welcome/styles.css";
 @import "components/pages/login/styles.css";
+@import "components/pages/home/styles.css";
+@import "components/pages/user_auctions/styles.css";
 @import "components/shared/navbar/styles.css";
 @import "components/shared/icon/styles.css";
+@import "./components/shared/gallery/styles.css";
+
 
 

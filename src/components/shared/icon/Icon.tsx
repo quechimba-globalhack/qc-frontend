@@ -21,6 +21,8 @@ import StarIcon from "../../../images/icons/icono_star.svg";
 import StarFilledIcon from "../../../images/icons/icono_star_filled.svg";
 import UnlikeIcon from "../../../images/icons/icono_unlike.svg";
 import UserIcon from "../../../images/icons/icono_user.svg";
+import MenuIconGreen from "../../../images/icons/icono_menu_green.svg";
+import AuctionIconGreen from "../../../images/icons/icono_auctions_green.svg";
 
 const icons = [
   {
@@ -40,7 +42,7 @@ const icons = [
     svg: BackIcon,
   },
   {
-    name: "back_white",
+    name: "backWhite",
     svg: BackWhiteIcon,
   },
   {
@@ -92,7 +94,7 @@ const icons = [
     svg: StarIcon,
   },
   {
-    name: "star_filled",
+    name: "starFilled",
     svg: StarFilledIcon,
   },
   {
@@ -102,6 +104,14 @@ const icons = [
   {
     name: "user",
     svg: UserIcon,
+  },
+  {
+    name: "menuGreen",
+    svg: MenuIconGreen,
+  },
+  {
+    name: "auctionGreen",
+    svg: AuctionIconGreen,
   },
 ];
 
