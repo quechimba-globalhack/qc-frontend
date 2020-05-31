@@ -20,7 +20,8 @@ const Login = () => {
   const { register, handleSubmit } = useForm<UserProps>();
   const onSubmit = handleSubmit(({ username }) => {
     setValue(username.toLowerCase());
-    history.push("/home");
+    window.location.replace("/home");
+    // history.push("/home");
   });
 
   // Lottie animation config
