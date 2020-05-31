@@ -225,3 +225,22 @@
 .offer-container button {
   @apply w-full text-center mt-3;
 }
+
+.bidded-container {
+  @apply w-full text-center text-xl py-10 px-8;
+  color: #4e4e4e;
+  font-weight: 400;
+}
+
+.bidded-container:before {
+  position: absolute;
+  bottom: 30px;
+  content: "";
+  width: 80%;
+  left: 10%;
+  border-bottom: 1px solid #cbdadb;
+}
+
+.bidded-container.hidden {
+  @apply hidden;
+}

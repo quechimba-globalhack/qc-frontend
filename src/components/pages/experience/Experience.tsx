@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useMutation, useLazyQuery } from "react-apollo";
 import { useLocation, useHistory, NavLink } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
@@ -9,13 +10,9 @@ import Gallery from "../../shared/gallery/Gallery";
 import Background from "../../../images/backgrounds/background_1_filter.png";
 import { getImages } from "../../../utils/mockData";
 import { createAuctionStartTransaction } from "../../../application/transactions/auction";
-import { useMutation, useLazyQuery, useQuery } from "react-apollo";
 import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
-import { toast } from "react-toastify";
 import { GET_EXPERIENCE_QUERY, ExperienceData, GetExperienceVariables } from "./api/queries/experience";
 import { useStateWithLocalStorage } from "../../../utils/useStateWithLocalStorage";
-
-// const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
 type ExperienceDataView = {
   src: string;
@@ -66,7 +63,7 @@ const Experience = () => {
     const idExp = (location?.state as any)?.expid ?? "";
     setExpId(idExp);
     if (idExp === "") {
-      history.push('/home');
+      history.push("/home");
     }
 
   }, [])
@@ -101,23 +98,28 @@ const Experience = () => {
     try {
       if (!expId) return;
       const data = await createAuctionStartTransaction("agency1", {
-        owner: 'agency1',
+        owner: "agency1",
         expid: Number(expId),
-        start_date: new Date('2020-07-28T17:01:20')
+        start_date: new Date("2020-07-28T17:01:20"),
       });
       await sendTransaction({
         variables: {
           user: "agency1",
           data,
-        }
+        },
       });
       // Navigate to bids route
-      history.push('/bids');
+      history.push("/bids");
     } catch (err) {
       const error = new Error(err);
-      toast(error.message.replace("GraphQL error: Error: assertion failure with message", ""))
+      toast(
+        error.message.replace(
+          "GraphQL error: Error: assertion failure with message",
+          ""
+        )
+      );
     }
-  }
+  };
 
   const stateRouter = {
     state: { actnId: expData.actnId }
@@ -137,6 +139,13 @@ const Experience = () => {
         stars={expData.stars}
         offers={expData.offers}
       />
+      {/* Incluir la clase hidden para ocultar el div */}
+      <div className="bidded-container">
+        <p>
+          ya realisaste una oferta, espera <strong>30 minutos</strong> para
+          realizar una nueva
+        </p>
+      </div>
       <div className="tabs-container__navbar">
         <a
           href="#overview"
