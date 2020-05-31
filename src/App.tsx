@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import ApolloClient from "apollo-boost";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // components
 import Navbar from "./components/shared/navbar/Navbar";
@@ -12,6 +12,7 @@ import Login from "./components/pages/login/Login";
 import Home from "./components/pages/home/Home";
 import UserAuctions from "./components/pages/user_auctions/UserAuctions";
 import Experience from "./components/pages/experience/Experience";
+import UserBids from "./components/pages/user_bid/UserBids";
 import { useStateWithLocalStorage } from "./utils/useStateWithLocalStorage";
 
 const client = new ApolloClient({
@@ -20,13 +21,13 @@ const client = new ApolloClient({
 // or you can use `import gql from 'graphql-tag';` instead
 
 // TODO: After MVP, each user will have their own private key
-const DEFAULT_PK = '5J7LPEhbEURqAEQvfXQjbTuaXQPV76bMUhMmoSnv1mMS51mN9y1';
+const DEFAULT_PK = "5J7LPEhbEURqAEQvfXQjbTuaXQPV76bMUhMmoSnv1mMS51mN9y1";
 
 function App() {
-  const { value, setValue } = useStateWithLocalStorage('private-key');
+  const { value, setValue } = useStateWithLocalStorage("private-key");
   useEffect(() => {
     setValue(DEFAULT_PK);
-  }, [])
+  }, []);
 
   return (
     <ApolloProvider client={client}>
@@ -39,6 +40,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/user-auctions" component={UserAuctions} />
           <Route path="/experience" component={Experience} />
+          <Route path="/bids" component={UserBids} />
         </Switch>
       </BrowserRouter>
     </ApolloProvider>
