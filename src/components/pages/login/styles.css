@@ -7,15 +7,15 @@
   @apply flex justify-center py-16 w-full h-auto;
 }
 
-.login-container__logo img{
-  @apply w-40;
+.login-container__logo img {
+  @apply w-32;
 }
 
 .login-container__title {
   @apply w-full;
 }
 
-.login-container__title h1{
+.login-container__title h1 {
   @apply pl-8 pr-16 leading-tight text-left text-white text-3xl;
   font-weight: 600;
 }
@@ -24,12 +24,12 @@
   @apply w-full py-5 px-8;
 }
 
-.form-container label{
+.form-container label {
   @apply block text-left text-white text-base pt-3;
   font-weight: 550;
 }
 
-.form-container input{
+.form-container input {
   @apply w-full rounded-lg h-10 bg-white bg-no-repeat pl-10;
   font-weight: 550;
   background-position: 5% 50%;
@@ -54,22 +54,22 @@
 }
 
 .login-container__submit {
-  @apply flex justify-center w-full mt-10 mb-8;
+  @apply flex justify-center w-full mt-5 mb-8;
 }
 
 .login-controls-container {
   @apply flex justify-around;
 }
 
-.login-controls-container a{
+.login-controls-container a {
   @apply flex-initial text-white underline text-base;
   font-weight: 250;
 }
 
-.login-controls-container a:nth-child(1){
+.login-controls-container a:nth-child(1) {
   @apply text-left;
 }
 
-.login-controls-container a:nth-child(2){
+.login-controls-container a:nth-child(2) {
   @apply text-right;
 }
