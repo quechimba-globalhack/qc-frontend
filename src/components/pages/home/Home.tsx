@@ -13,8 +13,18 @@ import {
   SEND_TRANSACTION_MUTATION,
 } from "../../shared/resolvers/eosioTransaction";
 import Gallery, { GaleryItem } from "../../shared/gallery/Gallery";
-import { images, getImages } from "../../../utils/mockData";
+import { images, getImages, to1, to2 } from "../../../utils/mockData";
 import { ExperienceData, GetExperienceVariables, GET_EXPERIENCE_QUERY } from "../experience/api/queries/experience";
+import Background1 from "../../../images/backgrounds/background_2.png";
+import Background2 from "../../../images/backgrounds/background_3.png";
+
+const imagesRecomendados = [{
+  src: Background1,
+  to: to1
+}, {
+  src: Background2,
+  to: to2
+}];
 
 // const images = [
 //   {
@@ -72,7 +82,7 @@ const Home = () => {
           <p>Recomendados</p>
           <a href="/">Ver todo</a>
         </div>
-        <Gallery items={getImages(4)} />
+        <Gallery items={imagesRecomendados} />
       </div>
     </div>
   );

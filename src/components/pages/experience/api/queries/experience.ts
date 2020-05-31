@@ -10,6 +10,7 @@ export interface Auction {
   bkn: string;
   req_cancel: number;
   created_at: Date;
+  counter: number;
 }
 
 export interface Experience {
@@ -56,6 +57,7 @@ export const GET_EXPERIENCE_QUERY = gql`
         highest_bid
         bkn
         req_cancel
+        counter
         created_at
       }
     }

@@ -8,15 +8,25 @@ import Icon from "../../shared/icon/Icon";
 import Gallery from "../../shared/gallery/Gallery";
 
 import Background from "../../../images/backgrounds/background_1_filter.png";
-import { getImages } from "../../../utils/mockData";
+import { getImages, to1, to2 } from "../../../utils/mockData";
 import { createAuctionStartTransaction } from "../../../application/transactions/auction";
 import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
 import { GET_EXPERIENCE_QUERY, ExperienceData, GetExperienceVariables } from "./api/queries/experience";
 import { useStateWithLocalStorage } from "../../../utils/useStateWithLocalStorage";
+import Background1 from "../../../images/backgrounds/background_2.png";
+import Background2 from "../../../images/backgrounds/background_3.png";
+
+const images = [{
+  src: Background1,
+  to: to1
+}, {
+  src: Background2,
+  to: to2
+}];
 
 type ExperienceDataView = {
   src: string;
-  dueDate: Date;
+  dueDate?: Date;
   title: string;
   duration: string;
   description: string;
@@ -31,7 +41,6 @@ type ExperienceDataView = {
 
 const infoExperience: ExperienceDataView = {
   src: Background,
-  dueDate: new Date("2020-06-27"),
   title: "Laguna de Tota",
   duration: "5 días 4 noches",
   description:
@@ -40,7 +49,7 @@ const infoExperience: ExperienceDataView = {
   like: false,
   eco: 3,
   stars: 4,
-  offers: 12,
+  offers: 0,
 };
 
 type OfferProps = {
@@ -79,6 +88,7 @@ const Experience = () => {
         dueDate: maxactntdate,
         bknBid: actn && actn.bkn === value ? actn.highest_bid : null,
         actnId: actn ? actn.actn_id : null,
+        offers: actn ? actn.counter : 0,
       })
     }
   }, [data])
@@ -108,6 +118,7 @@ const Experience = () => {
           data,
         },
       });
+      query()
       // Navigate to bids route
       history.push("/bids");
     } catch (err) {
@@ -140,12 +151,15 @@ const Experience = () => {
         offers={expData.offers}
       />
       {/* Incluir la clase hidden para ocultar el div */}
-      <div className="bidded-container">
-        <p>
-          ya realisaste una oferta, espera <strong>30 minutos</strong> para
-          realizar una nueva
-        </p>
-      </div>
+      {expData.bknBid &&
+        <div className="bidded-container">
+          <p>
+            ya realizaste una oferta, espera <strong>30 minutos</strong> para
+            realizar una nueva
+          </p>
+        </div>
+
+      }
       <div className="tabs-container__navbar">
         <a
           href="#overview"
@@ -224,7 +238,7 @@ const Experience = () => {
             <div className="gallery-experience-container__title">
               <p>Recomendados</p>
             </div>
-            <Gallery items={getImages(2)} />
+            <Gallery items={images} />
           </div>
           <div className="offer-container">
             {expData.bknBid && <p className="offer-container__user-offer">Tu oferta {expData.bknBid}</p>}

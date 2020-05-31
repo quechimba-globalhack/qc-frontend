@@ -26,10 +26,6 @@ const UserBids = () => {
   useEffect(() => {
     const idAct = (location?.state as any)?.actnId ?? null;
     setIdActn(idAct);
-    if (idAct === null) {
-      history.push('/home');
-    }
-
   }, [])
   const sendBid = async () => {
     try {

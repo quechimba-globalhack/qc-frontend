@@ -24,10 +24,10 @@ const Navbar = () => {
   }, [])
 
   return (
-    <header className={`"header-navbar ${location.pathname === "/" || location.pathname === "/login" ? "hidden" : "active"}`}>
+    <header className={`"header-navbar ${location.pathname === "/home" || location.pathname === "/login" ? "hidden" : "active"}`}>
       <nav className={`${!navBar ? "navbar" : "navbar--white"}`}>
         <div className="navbar__left-section">
-          <NavbarItem itemName="menu" to={{ ...routeOptionsGreen, pathname: '/' }} icon={`${!navBar ? "menu" : "menuGreen"}`} />
+          <NavbarItem itemName="menu" to={{ ...routeOptionsGreen, pathname: '/home' }} icon={`${!navBar ? "menu" : "menuGreen"}`} />
         </div>
         <div className="navbar__right-section">
           <NavbarItem itemName="auction" to={{ ...routeOptionsWhite, pathname: '/user-auctions' }} icon={`${!navBar ? "auction" : "auctionGreen"}`} />
