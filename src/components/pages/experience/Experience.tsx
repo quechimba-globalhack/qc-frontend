@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
@@ -150,17 +150,19 @@ const Experience = () => {
               <p>{infoExperience.offers}</p>
             </div>
             <p className="offer-container__user-offer">Tu oferta</p>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
               <input
                 className="data-auction__value"
                 name="tokens"
                 type="number"
                 ref={register}
-              ></input>
+              ></input> */}
+            <NavLink to="/bids">
               <button className="btn-green" type="submit">
                 Ofertar
               </button>
-            </form>
+            </NavLink>
+            {/* </form> */}
           </div>
         </div>
         <div

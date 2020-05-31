@@ -1,0 +1,45 @@
+.bid-container {
+  @apply flex flex-col w-full p-8;
+}
+
+.bid-container__title,
+.bid-container__power-title {
+  @apply w-full my-8;
+}
+
+.bid-container__title p,
+.bid-container__power-title p {
+  @apply text-2xl;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.bid-container__total-offer-title {
+  @apply w-full my-10;
+}
+
+.bid-container__total-offer-title p {
+  @apply w-full text-center text-xl;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.bid-container__offer-title p {
+  @apply w-full text-sm;
+  color: #4e4e4e;
+  font-weight: 300;
+}
+
+.bid-container__offer-value input {
+  @apply flex w-full shadow px-4 rounded-full h-10 text-right;
+  color: #149da2;
+  font-weight: 600;
+}
+
+.bid-container__power-list select {
+  @apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+}
+
+.bid-container__offer-button {
+  @apply text-center;
+}
