@@ -5,7 +5,7 @@ export interface Lukas {
 }
 
 export interface LukasData {
-  getBalance: Lukas;
+  getBalace: Lukas;
 }
 
 export interface GetBalanceVariables {
