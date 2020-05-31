@@ -4,7 +4,7 @@ import Timer from "../../shared/timer/Timer";
 
 type InfoExperienceHeader = {
   src: string;
-  dueDate: string;
+  dueDate: Date;
   title: string;
   duration: string;
   description: string;

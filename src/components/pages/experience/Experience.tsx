@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, NavLink } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
@@ -9,15 +9,31 @@ import Gallery from "../../shared/gallery/Gallery";
 import Background from "../../../images/backgrounds/background_1_filter.png";
 import { getImages } from "../../../utils/mockData";
 import { createAuctionStartTransaction } from "../../../application/transactions/auction";
-import { useMutation } from "react-apollo";
+import { useMutation, useLazyQuery, useQuery } from "react-apollo";
 import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
 import { toast } from "react-toastify";
+import { GET_EXPERIENCE_QUERY, ExperienceData, GetExperienceVariables } from "./api/queries/experience";
+import { useStateWithLocalStorage } from "../../../utils/useStateWithLocalStorage";
 
 // const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
-const infoExperience = {
+type ExperienceDataView = {
+  src: string;
+  dueDate: Date;
+  title: string;
+  duration: string;
+  description: string;
+  price: string;
+  like: boolean;
+  eco: number;
+  stars: number;
+  offers: number;
+  bknBid?: number
+}
+
+const infoExperience: ExperienceDataView = {
   src: Background,
-  dueDate: "2020-06-27",
+  dueDate: new Date("2020-06-27"),
   title: "Laguna de Tota",
   duration: "5 días 4 noches",
   description:
@@ -36,37 +52,48 @@ type OfferProps = {
 const Experience = () => {
   const history = useHistory();
   const location = useLocation();
+  const { value } = useStateWithLocalStorage("username");
   const [expId, setExpId] = useState<string>("")
-
+  const [expData, setExpData] = useState<ExperienceDataView>(infoExperience);
+  const [query, { loading, data }] = useLazyQuery<ExperienceData, GetExperienceVariables>(
+    GET_EXPERIENCE_QUERY,
+    {
+      variables: { expid: Number(expId) },
+    }
+  );
   useEffect(() => {
     const idExp = (location?.state as any)?.expid ?? "";
     setExpId(idExp);
     if (idExp === "") {
       history.push('/home');
     }
-  }, [location])
 
-  // TODO: do a query to get the experience
+  }, [])
+
+  useEffect(() => {
+    console.debug("DAta changing")
+    if (data?.getExperience) {
+      console.debug("Heyyyy ", data.getExperience);
+      const { base_val, maxactntdate, actn } = data.getExperience;
+      setExpData({
+        ...infoExperience,
+        price: base_val,
+        dueDate: maxactntdate,
+        bknBid: actn && actn.bkn === value ? actn.highest_bid : null,
+      })
+    }
+  }, [data])
+
+  useEffect(() => {
+    query()
+  }, [expId])
+
   const [openTab, setOpenTab] = useState(1);
-
-  // const { register, handleSubmit } = useForm<OfferProps>();
-  // const onSubmit = handleSubmit(({ tokens }) => {
-  //   console.debug(tokens);
-  // });
 
   const [sendTransaction, { error, data: mdata }] = useMutation<
     RpcProcessedResponse,
     SendTransactionVariales
-  >(SEND_TRANSACTION_MUTATION, {
-    variables: {
-      user: "expublish",
-      data: {
-        name: "expublish",
-        signatures: ["234567890"],
-        hexData: "4567890",
-      },
-    },
-  });
+  >(SEND_TRANSACTION_MUTATION, {});
 
   const startAuction = async () => {
     try {
@@ -93,16 +120,16 @@ const Experience = () => {
   return (
     <Fragment>
       <ExperienceHeader
-        src={infoExperience.src}
-        dueDate={infoExperience.dueDate}
-        title={infoExperience.title}
-        duration={infoExperience.duration}
-        description={infoExperience.description}
-        price={infoExperience.price}
-        like={infoExperience.like}
-        eco={infoExperience.eco}
-        stars={infoExperience.stars}
-        offers={infoExperience.offers}
+        src={expData.src}
+        dueDate={expData.dueDate}
+        title={expData.title}
+        duration={expData.duration}
+        description={expData.description}
+        price={expData.price}
+        like={expData.like}
+        eco={expData.eco}
+        stars={expData.stars}
+        offers={expData.offers}
       />
       <div className="tabs-container__navbar">
         <a
@@ -185,29 +212,17 @@ const Experience = () => {
             <Gallery items={getImages(2)} />
           </div>
           <div className="offer-container">
-            <p className="offer-container__title">Valor</p>
-            <div className="data-auction__titles">
-              <p>Precio base</p>
-              <p>Ofertas</p>
-            </div>
-            <div className="data-auction__quantity">
-              <p>{infoExperience.price}</p>
-              <p>{infoExperience.offers}</p>
-            </div>
-            <p className="offer-container__user-offer">Tu oferta</p>
-            {/* <form onSubmit={onSubmit}>
-              <input
-                className="data-auction__value"
-                name="tokens"
-                type="number"
-                ref={register}
-              ></input> */}
-            {/* <NavLink to="/bids"> */}
-            <button onClick={startAuction} className="btn-green" type="submit">
-              Iniciar subasta Demo ....
+            {expData.bknBid && <p className="offer-container__user-offer">Tu oferta {expData.bknBid}</p>}
+            {!expData.bknBid &&
+              <NavLink to="/bids">
+                <button className="btn-green">
+                  Ofertar
               </button>
-            {/* </NavLink> */}
-            {/* </form> */}
+              </NavLink>
+            }
+            <button onClick={startAuction} className="btn-green">
+              Iniciar subasta Demo ....
+             </button>
           </div>
         </div>
         <div
