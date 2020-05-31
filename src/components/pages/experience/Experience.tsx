@@ -1,19 +1,17 @@
 import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, NavLink, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import ExperienceHeader from "./ExperienceHeader";
 import Icon from "../../shared/icon/Icon";
-import Gallery, { GaleryItem } from "../../shared/gallery/Gallery";
+import Gallery from "../../shared/gallery/Gallery";
 
 import Background from "../../../images/backgrounds/background_1_filter.png";
-import Background3 from "../../../images/backgrounds/background_3.png";
-import Background2 from "../../../images/backgrounds/background_2.png";
 import { getImages } from "../../../utils/mockData";
-import { RouteComponentProps } from "react-router-dom";
 import { createAuctionStartTransaction } from "../../../application/transactions/auction";
 import { useMutation } from "react-apollo";
 import { RpcProcessedResponse, SendTransactionVariales, SEND_TRANSACTION_MUTATION } from "../../shared/resolvers/eosioTransaction";
+import { toast } from "react-toastify";
 
 // const images: GaleryItem[] = [{ src: Background3, to: '' }];
 
@@ -35,19 +33,17 @@ type OfferProps = {
   tokens: number;
 };
 
-type TParams = { id: string };
 const Experience = () => {
   const history = useHistory();
   const location = useLocation();
   const expId = (location.state as any).expid;
   // TODO: do a query to get the experience
-  console.debug("expid ", expId);
   const [openTab, setOpenTab] = useState(1);
 
-  const { register, handleSubmit } = useForm<OfferProps>();
-  const onSubmit = handleSubmit(({ tokens }) => {
-    console.debug(tokens);
-  });
+  // const { register, handleSubmit } = useForm<OfferProps>();
+  // const onSubmit = handleSubmit(({ tokens }) => {
+  //   console.debug(tokens);
+  // });
 
   const [sendTransaction, { error, data: mdata }] = useMutation<
     RpcProcessedResponse,
@@ -64,20 +60,24 @@ const Experience = () => {
   });
 
   const startAuction = async () => {
-    const data = await createAuctionStartTransaction("agency1", {
-      owner: 'agency1',
-      expid: expId,
-      start_date: new Date('2020-07-28T17:01:20')
-    });
-    console.debug("dataaaaaa 👮🏻‍♂️ ", data);
-    const result = await sendTransaction({
-      variables: {
-        user: "agency1",
-        data,
-      }
-    });
-    console.debug("result ", result);
-    history.push('/bids');
+    try {
+      const data = await createAuctionStartTransaction("agency1", {
+        owner: 'agency1',
+        expid: expId,
+        start_date: new Date('2020-07-28T17:01:20')
+      });
+      await sendTransaction({
+        variables: {
+          user: "agency1",
+          data,
+        }
+      });
+      // Navigate to bids route
+      history.push('/bids');
+    } catch (err) {
+      const error = new Error(err);
+      toast(error.message.replace("GraphQL error: Error: assertion failure with message", ""))
+    }
   }
 
   return (

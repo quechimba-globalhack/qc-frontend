@@ -44,10 +44,8 @@ export const getImages = (amount: number) => {
   let len = amount > items.length ? items.length : amount;
   for (let i = 0; i < amount; i++) {
     const rand = getRandomNumbers(0, amount - 1);
-    console.debug("rand ", rand);
     result.push(items[rand])
   }
-  console.debug("resultadd ", result);
   return result;
 }
 

@@ -22,7 +22,7 @@ const ExperienceHeader = (props: InfoExperienceHeader) => {
   const generateLeafs = (eco: number) => {
     let leafs: any[] = [];
     for (let i = 1; i <= eco; i++) {
-      leafs.push(<Icon icon="leaf" />);
+      leafs.push(<Icon icon="leaf" key={i} />);
     }
     return leafs;
   };
@@ -31,7 +31,7 @@ const ExperienceHeader = (props: InfoExperienceHeader) => {
     let starsList: any[] = [];
     for (let i = 1; i <= 5; i++) {
       starsList.push(
-        i <= stars ? <Icon icon="starFilled" /> : <Icon icon="star" />
+        i <= stars ? <Icon icon="starFilled" key={i} /> : <Icon icon="star" key={i} />
       );
     }
     return starsList;
