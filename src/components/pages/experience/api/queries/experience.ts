@@ -3,9 +3,9 @@ import { gql } from "apollo-boost";
 export interface Auction {
   actn_id: number;
   exp_id: number;
-  start_date: "2020-10-28T17:01:20";
+  start_date: Date;
   duration: number;
-  start_value: "5000.0000 LKS";
+  start_value: number;
   highest_bid: number;
   bkn: string;
   req_cancel: number;
